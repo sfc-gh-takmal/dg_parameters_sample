@@ -1,0 +1,3 @@
+churn_days:
+  training: 60
+  inference: 0

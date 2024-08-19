@@ -1,0 +1,26 @@
+definition_version: "1.1"
+snowpark:
+  project_name: "my_snowpark_project"
+  stage_name: "<% ctx.env.STAGE_NAME %>"
+  src: "app/"
+  procedures:
+    - name: run_commands
+      handler: "procedures.run_commands"
+      signature:
+        - name: "yaml_file_path"
+          type: "string"
+      execute_as_caller: true
+      returns: string
+    - name: run_training
+      handler: "training_driver.run_training"
+      signature:
+        - name: "yaml_file_path"
+          type: "string"
+      execute_as_caller: true
+      returns: string
+env:
+  STAGE_NAME: "TEST_STAGE"
+  
+#STAGE_NAME: "dev_deployment"
+
+# STAGE_NAME="prod_deployment" snow snowpark deploy --replace
